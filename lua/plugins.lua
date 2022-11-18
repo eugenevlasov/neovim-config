@@ -15,23 +15,23 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- My plugins here
 
--- scrool smooth
+---- scrool smooth
 use 'psliwka/vim-smoothie'
----
--- цветовая схема
----
+-----
+---- цветовая схема
+-----
 use { 'mhartington/oceanic-next' }
----
--- управление буферами
----
+-----
+---- управление буферами
+-----
 use {
   'romgrk/barbar.nvim',
   requires = {'kyazdani42/nvim-web-devicons'}
 }
 
----
--- статусная строка
----
+-----
+---- статусная строка
+-----
 use {
   'nvim-lualine/lualine.nvim',
   requires = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -39,55 +39,59 @@ use {
 	  require('lualine').setup()
   end,
 }
----
--- умный f
----
+-----
+---- умный f
+-----
 use 'rhysd/clever-f.vim'
----
--- запоминание последней позиции для перехода при открытии vim
----
+-----
+---- запоминание последней позиции для перехода при открытии vim
+-----
 use 'farmergreg/vim-lastplace'
 
----
--- умная проверка офографии
----
+-----
+---- умная проверка офографии
+-----
 use 'kamykn/spelunker.vim'
----
--- русские буквы в командном режиме
----
+
+-----
+---- русские буквы в командном режиме
+-----
 use 'powerman/vim-plugin-ruscmd'
 
----
--- смена рабочего каталога
----
+-----
+---- смена рабочего каталога
+-----
 use 'airblade/vim-rooter'
 
--- дополнительные текстовые объекты
+---- дополнительные текстовые объекты
 use 'wellle/targets.vim'
 use 'kana/vim-textobj-user'
 use 'rhysd/vim-textobj-ruby'
 use 'nelstrom/vim-textobj-rubyblock'
 
--- подстветка парные скобки и тд
--- use 'andymass/vim-matchup'
+---- подстветка парные скобки и тд
+---- use 'andymass/vim-matchup'
 
---объекты внутри тэгов, скобок и тд
+----объекты внутри тэгов, скобок и тд
 use 'machakann/vim-sandwich'
 
--- rails
+---- slim
 use 'slim-template/vim-slim'
 
+---- rails
+use 'tpope/vim-rails'
 
--- окошко с подсказкой по командам
+
+---- окошко с подсказкой по командам
 use { 'folke/which-key.nvim' }
 
--- комментирование кода
+---- комментирование кода
 use 'tpope/vim-commentary'
---
--- уровни кода вертикальной линией обозначает
+----
+---- уровни кода вертикальной линией обозначает
 use 'Yggdroot/indentLine'
 
--- Telescope
+---- Telescope
 use {
   'nvim-telescope/telescope.nvim', tag = '0.1.0',
 -- or                            , branch = '0.1.x',
@@ -96,9 +100,9 @@ use {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'  }
   },
 }
----
--- LSP
----
+-----
+---- LSP
+-----
 use {
     'neovim/nvim-lspconfig',
     -- Configurations for Nvim LSP
@@ -110,36 +114,28 @@ use {
 
 use {
     "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = function()
-        local saga = require("lspsaga")
-
-        saga.init_lsp_saga({
-            finder_request_timeout = 30000
-            -- your configuration
-        })
-    end,
+    branch = "main"
 }
----
--- autocomplete
----" main one
+-----
+---- autocomplete
+-----" main one
 use {'ms-jpq/coq_nvim', branch =  'coq' }
 
--- use { 'hrsh7th/nvim-cmp',
---         requires = {
--- 		{'hrsh7th/cmp-nvim-lsp'},
--- 		{'hrsh7th/cmp-buffer'},
--- 		{'hrsh7th/cmp-path'},
--- 		{'hrsh7th/cmp-cmdline'},
---         {'tzachar/cmp-tabnine', run='./install.sh'},
---         {'hrsh7th/cmp-nvim-lsp-signature-help'}
--- 	}
--- }
+---- use { 'hrsh7th/nvim-cmp',
+----         requires = {
+---- 		{'hrsh7th/cmp-nvim-lsp'},
+---- 		{'hrsh7th/cmp-buffer'},
+---- 		{'hrsh7th/cmp-path'},
+---- 		{'hrsh7th/cmp-cmdline'},
+----         {'tzachar/cmp-tabnine', run='./install.sh'},
+----         {'hrsh7th/cmp-nvim-lsp-signature-help'}
+---- 	}
+---- }
 
----
--- tree view
----
--- use { 'nvim-tree/nvim-tree.lua' }
+-----
+---- tree view
+-----
+--- use { 'nvim-tree/nvim-tree.lua' }
 use {
   "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -149,13 +145,13 @@ use {
       "MunifTanjim/nui.nvim",
     }
   }
---- 
---Автоподстановка парных скобок, кавычек и тд
---
+----- 
+----Автоподстановка парных скобок, кавычек и тд
+----
 use {	"windwp/nvim-autopairs"}
----
--- VGit
----
+-----
+---- VGit
+-----
 use {
   'tanvirtin/vgit.nvim',
   requires = {
@@ -163,8 +159,9 @@ use {
   }
 }
 
--- startscreen
+---- startscreen
 use 'mhinz/vim-startify'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

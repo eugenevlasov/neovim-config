@@ -42,7 +42,7 @@ map('', '<space>иВ', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap
 map('', '<space>y','"+y', { silent = true })
 map('', '<space>н','"+y', { silent = true })
 map('', '<space>yy','"+yy', { silent = true })
-map('', '<space>yy','"+yy', { silent = true })
+map('', '<space>нн','"+yy', { silent = true })
 map('', '<space>yf',':let @+=@%<CR>', {silent = true, noremap = true} )
 
 map('n', '<space>bt', ':NeoTreeRevealToggle<CR>', { silent = true, noremap = true })

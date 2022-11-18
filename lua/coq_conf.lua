@@ -23,12 +23,12 @@ vim.g.coq_settings = {
        pum = {
            fast_close = false
        },
-       preview = { 
+       preview = {
            positions = {
             ["north"] = 0,
-            ["east"] = 0,
-            ["west"] = 0,
-            ["south"] = 0
+            ["east"] = -1,
+            ["west"] = -1,
+            ["south"] = -1
            }
        }
 
@@ -38,7 +38,6 @@ vim.g.coq_settings = {
 
 vim.cmd([[
 set completeopt-=preview
-
 ]])
 
 -- vim

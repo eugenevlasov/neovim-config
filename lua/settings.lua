@@ -32,10 +32,11 @@ opt.shiftwidth = 4        -- shift 4 spaces when tab
 opt.textwidth = 80              -- Разделитель на 80 символов
 opt.cursorline = true               -- Подсветка строки с курсором
 opt.spell = true
-opt.spelllang= { 'en_us', 'ru' }    -- Словари рус eng
+--opt.spelllang = { 'en_us', 'ru' }    -- Словари рус eng
+--opt.spelllang = { 'en_us' }    -- Словари рус eng
 opt.smartindent = true    -- autoindent new lines
 opt.autoindent = true
-opt.hidden = true
+opt.hidden = true -- вомзжность перейти на другой буфер, если текущий не сохранен
 opt.signcolumn = 'yes'
 
 opt.number = true                   -- Включаем нумерацию строк
@@ -45,8 +46,8 @@ opt.lazyredraw = true
 opt.splitbelow = true
 opt.splitright = true
 
-opt.undofile = true
-opt.undodir=vim.fn.expand('~/.vim/undodir')
+opt.undofile = true -- бесконечное отмена
+opt.undodir=vim.fn.expand('~/.vim/undodir') -- каталог для хранения бесконечной отмены
 
 
 opt.list = true
@@ -54,8 +55,9 @@ opt.lcs='tab:·⁖,trail:¶' -- trail whitespace
 
 opt.smartcase = true -- умный поиск
 -- Фолдинг
-opt.foldmethod = 'syntax'
-opt.foldlevel = 99
+opt.foldmethod = 'syntax' -- сворачивание 
+opt.foldlevel = 99 -- по умолчению все развернуто при открытии файла
+--
 -- подстветка орфографических ошибок
 cmd([[
     hi SpellBad gui=underline
