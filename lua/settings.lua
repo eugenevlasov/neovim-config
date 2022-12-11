@@ -26,14 +26,14 @@ cmd([[
 -----------------------------------------------------------
 -- Главные
 -----------------------------------------------------------
+opt.mouse = ''
 opt.expandtab = true      -- use spaces instead of tabs
 opt.tabstop = 4           -- 1 tab == 4 spaces
 opt.shiftwidth = 4        -- shift 4 spaces when tab
 opt.textwidth = 80              -- Разделитель на 80 символов
 opt.cursorline = true               -- Подсветка строки с курсором
 opt.spell = true
---opt.spelllang = { 'en_us', 'ru' }    -- Словари рус eng
---opt.spelllang = { 'en_us' }    -- Словари рус eng
+opt.spelllang = { 'en_us', 'ru' }    -- Словари рус eng
 opt.smartindent = true    -- autoindent new lines
 opt.autoindent = true
 opt.hidden = true -- вомзжность перейти на другой буфер, если текущий не сохранен
@@ -41,6 +41,9 @@ opt.signcolumn = 'yes'
 
 opt.number = true                   -- Включаем нумерацию строк
 opt.relativenumber = true           -- Вкл. относительную нумерацию строк 
+
+
+opt.hlsearch = false -- подсветка результатов поиска
 
 opt.lazyredraw = true
 opt.splitbelow = true

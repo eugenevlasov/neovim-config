@@ -97,7 +97,8 @@ use {
 -- or                            , branch = '0.1.x',
   requires = { 
       {'nvim-lua/plenary.nvim'},
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'  }
+      -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'  }
+      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make'  }
   },
 }
 -----
@@ -116,26 +117,33 @@ use {
     "glepnir/lspsaga.nvim",
     branch = "main"
 }
+
+---
+-- nvim-notify
+--- 
+use 'rcarriga/nvim-notify'
+
 -----
 ---- autocomplete
 -----" main one
-use {'ms-jpq/coq_nvim', branch =  'coq' }
+-- use {'ms-jpq/coq_nvim', branch =  'coq' }
 
----- use { 'hrsh7th/nvim-cmp',
-----         requires = {
----- 		{'hrsh7th/cmp-nvim-lsp'},
----- 		{'hrsh7th/cmp-buffer'},
----- 		{'hrsh7th/cmp-path'},
----- 		{'hrsh7th/cmp-cmdline'},
-----         {'tzachar/cmp-tabnine', run='./install.sh'},
-----         {'hrsh7th/cmp-nvim-lsp-signature-help'}
----- 	}
----- }
-
+--- nvim-cmp
+-- use { 'hrsh7th/nvim-cmp',
+--          requires = {
+--  {'hrsh7th/cmp-nvim-lsp'},
+--  {'hrsh7th/cmp-buffer'},
+--  {'hrsh7th/cmp-path'},
+--  {'hrsh7th/cmp-cmdline'},
+--          {'tzachar/cmp-tabnine', run='./install.sh'},
+--          {'hrsh7th/cmp-nvim-lsp-signature-help'}
+--  	}
+--  }
+--- coc.nvim
+use {'neoclide/coc.nvim', branch= 'release'}
 -----
 ---- tree view
 -----
---- use { 'nvim-tree/nvim-tree.lua' }
 use {
   "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -148,7 +156,7 @@ use {
 ----- 
 ----Автоподстановка парных скобок, кавычек и тд
 ----
-use {	"windwp/nvim-autopairs"}
+use {"windwp/nvim-autopairs"}
 -----
 ---- VGit
 -----
@@ -158,7 +166,15 @@ use {
     'nvim-lua/plenary.nvim'
   }
 }
-
+---
+-- snippets
+---
+use 'honza/vim-snippets'
+---
+-- vim-fetch
+--  Открывает файл с номером строки
+--  default_service_spec.rb:11
+use 'wsdjeg/vim-fetch'
 ---- startscreen
 use 'mhinz/vim-startify'
 

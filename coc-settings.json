@@ -1,0 +1,10 @@
+{
+    "suggest": {
+        "minTriggerInputLength": 2,
+        "floatConfig": {
+            "border": true,
+            "rounded": true,
+            "shadow: true"
+        }
+    }
+}

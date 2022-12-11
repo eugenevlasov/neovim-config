@@ -22,6 +22,7 @@ map('n', '<C-F>m', ':lua require"telescope.builtin".find_files({cwd = \'./app/mo
 map('n', '<C-F>jb', ':lua require"telescope.builtin".find_files({cwd = \'./app/jobs/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>js', ':lua require"telescope.builtin".find_files({cwd = \'./app/assets/javascripts/\'})<CR>', { silent = true, noremap = true})
 
+map('n', '<space>ro', ':Telescope oldfiles<CR>', { silent = true, noremap = true})
 map('n', '<tab>', '<C-W>w', {})
 
 map('n', '<space>bd', ':BufferClose<CR>', { silent = true, noremap = true })
@@ -49,6 +50,9 @@ map('n', '<space>bt', ':NeoTreeRevealToggle<CR>', { silent = true, noremap = tru
 map('n', '<space>ие', ':NeoTreeRevealToggle<CR>', { silent = true, noremap = true })
 map('', '<space>bb', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
 map('', '<space>ии', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
+
+
+map('', '<space>fo', ':e ', {noremap = true})
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys

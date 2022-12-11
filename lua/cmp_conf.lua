@@ -10,14 +10,15 @@ local cmp = require('cmp')
 
 cmp.setup({
     sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'cmp_tabnine', keyword_length = 3},
-    { name = 'nvim_lsp_signature_help' }
+    { name = 'cmp_tabnine', keyword_length = 2, priority = 0},
+    { name = 'nvim_lsp', keyword_length= 2, priority = 1},
+    { name = 'path', keyword_length = 4},
+    { name = 'buffer', keyword_length = 4},
+    { name = 'cmdline', keyword_length = 4}
   },
   window = {
-    documentation = cmp.config.window.bordered()
+    documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
   },
   formatting = {
     fields = {'menu', 'abbr', 'kind'},
