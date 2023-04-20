@@ -15,7 +15,8 @@ local opt = vim.opt             -- global/buffer/windows-scoped options
 opt.termguicolors = true      --  24-bit RGB colors
 
 -- Use the colorscheme
-cmd 'colorscheme OceanicNext'
+-- cmd 'colorscheme OceanicNext'
+cmd 'colorscheme vscode'
 
 cmd([[
   syntax on
@@ -40,7 +41,7 @@ opt.hidden = true -- вомзжность перейти на другой бу�
 opt.signcolumn = 'yes'
 
 opt.number = true                   -- Включаем нумерацию строк
-opt.relativenumber = true           -- Вкл. относительную нумерацию строк 
+opt.relativenumber = true           -- Вкл. относительную нумерацию строк
 
 
 opt.hlsearch = false -- подсветка результатов поиска

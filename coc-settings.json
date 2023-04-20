@@ -1,10 +1,16 @@
 {
     "suggest": {
-        "minTriggerInputLength": 2,
+        "minTriggerInputLength": 3,
         "floatConfig": {
             "border": true,
             "rounded": true,
             "shadow: true"
-        }
+        },
+        pum"floatConfig": {
+            "border": true,
+            "rounded": true,
+            "shadow: true"
+        },
+        "defaultSortMethod": "alphabetical"
     }
 }

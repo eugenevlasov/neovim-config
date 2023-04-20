@@ -29,6 +29,8 @@ map('n', '<space>bd', ':BufferClose<CR>', { silent = true, noremap = true })
 map('n', '<space>ив', ':BufferClose<CR>', { silent = true, noremap = true })
 map('n', '<space>bj', ':BufferPick<CR>', { silent = true, noremap = true })
 map('n', '<space>ио', ':BufferPick<CR>', { silent = true, noremap = true })
+map('', '<space>bD', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap = true })
+map('', '<space>иВ', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap = true })
 
 map('', '<space>s', ':w<CR>', { silent = true, noremap = true })
 map('', '<space>ы', ':w<CR>', { silent = true, noremap = true })
@@ -37,8 +39,6 @@ map('', '<space>gb', ':Telescope git_branches<CR>', { silent = true, noremap })
 map('', '<space>пи', ':Telescope git_branches<CR>', { silent = true, noremap })
 map('', '<space>gh', ':VGit buffer_history_preview<CR>', { silent = true, noremap = true})
 map('', '<space>пр', ':VGit buffer_history_preview<CR>', { silent = true, noremap = true})
-map('', '<space>bD', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap = true })
-map('', '<space>иВ', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap = true })
 
 map('', '<space>y','"+y', { silent = true })
 map('', '<space>н','"+y', { silent = true })
@@ -53,9 +53,14 @@ map('', '<space>ии', ':Neotree buffers toggle<CR>', { silent = true, noremap  
 
 
 map('', '<space>fo', ':e ', {noremap = true})
+map('', '<space>fd', ':Remove!<CR>', { noremap=true})
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
 map("n", "<space>pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+map("n", "<space>d", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
+map("n", "<space>bs", "<cmd>Telescope lsp_document_symbols<CR>", { silent = true })
+map("n", "<space>ws", "<cmd>Telescope lsp_workspace_symbols<CR>", { silent = true })
+map("n", "<space>gr", "<cmd>Telescope lsp_references<CR>", { silent = true })

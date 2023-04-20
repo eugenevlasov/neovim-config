@@ -20,6 +20,7 @@ require('vgit_conf')
 require('mappings')
 require('which-key_conf')
 require('lspsaga_conf')
+require('vscode-color-theme')
 require('settings')
 
 vim.cmd('source '..vim.fn.expand('~/.config/nvim/')..'coc_notification.vim')

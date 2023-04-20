@@ -21,6 +21,7 @@ use 'psliwka/vim-smoothie'
 ---- цветовая схема
 -----
 use { 'mhartington/oceanic-next' }
+use { 'Mofiqul/vscode.nvim' }
 -----
 ---- управление буферами
 -----
@@ -144,16 +145,16 @@ use {'neoclide/coc.nvim', branch= 'release'}
 -----
 ---- tree view
 -----
-use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = { 
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  }
------ 
+ use {
+   "nvim-neo-tree/neo-tree.nvim",
+     branch = "v2.x",
+     requires = { 
+       "nvim-lua/plenary.nvim",
+       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+       "MunifTanjim/nui.nvim",
+     }
+   }
+--- 
 ----Автоподстановка парных скобок, кавычек и тд
 ----
 use {"windwp/nvim-autopairs"}
@@ -175,6 +176,9 @@ use 'honza/vim-snippets'
 --  Открывает файл с номером строки
 --  default_service_spec.rb:11
 use 'wsdjeg/vim-fetch'
+-- удаление файлов и тд
+use 'tpope/vim-eunuch'
+
 ---- startscreen
 use 'mhinz/vim-startify'
 
