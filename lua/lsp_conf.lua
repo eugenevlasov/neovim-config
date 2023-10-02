@@ -86,6 +86,10 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 require('lspconfig')['solargraph'].setup({
     capabilities = capabilities
 })
+require('lspconfig')['tsserver'].setup({
+    capabilities = capabilities
+})
+
 
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(

@@ -14,6 +14,11 @@ map('i','<Right>', '<NOP>', { noremap = true})
 map('n', '<C-P>', ':Telescope find_files<CR>', { silent = true, noremap = true})
 map('n', '<C-Y>', ':Telescope grep_string<CR>', { silent = true, noremap = true})
 map('n', '<C-T>', ':Telescope live_grep<CR>', { silent = true, noremap = true})
+-- map('n', '<C-F>f', ':lua require"telescope.builtin".find_files({cwd = require("telescope.utils").buffer_dir()})<CR>', { silent = true, noremap = true})
+map('n', '<C-F>f', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { silent = true, noremap = true})
+map('n', '<C-F>d', ':lua require"telescope.builtin".find_files({search_dirs={vim.api.nvim_call_function(\'RubyCursorFile\',{})}})<CR>', { silent = true, noremap = true})
+map('n', '<space>gf', ':lua require"telescope.builtin".find_files({search_file=vim.api.nvim_call_function(\'RubyCursorFile\',{})})<CR>', { silent = true, noremap = true})
+
 map('n', '<C-F>c', ':lua require"telescope.builtin".find_files({cwd = \'./app/controllers/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>t', ':lua require"telescope.builtin".find_files({cwd = \'./spec/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>s', ':lua require"telescope.builtin".find_files({cwd = \'./app/services/\'})<CR>', { silent = true, noremap = true})
@@ -21,6 +26,7 @@ map('n', '<C-F>v', ':lua require"telescope.builtin".find_files({cwd = \'./app/vi
 map('n', '<C-F>m', ':lua require"telescope.builtin".find_files({cwd = \'./app/models/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>jb', ':lua require"telescope.builtin".find_files({cwd = \'./app/jobs/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>js', ':lua require"telescope.builtin".find_files({cwd = \'./app/assets/javascripts/\'})<CR>', { silent = true, noremap = true})
+map('n', '<C-F>e', ':lua require"telescope.builtin".find_files({cwd = \'./engines/\'})<CR>', { silent = true, noremap = true})
 
 map('n', '<space>ro', ':Telescope oldfiles<CR>', { silent = true, noremap = true})
 map('n', '<tab>', '<C-W>w', {})
@@ -46,14 +52,24 @@ map('', '<space>yy','"+yy', { silent = true })
 map('', '<space>нн','"+yy', { silent = true })
 map('', '<space>yf',':let @+=@%<CR>', {silent = true, noremap = true} )
 
-map('n', '<space>bt', ':NeoTreeRevealToggle<CR>', { silent = true, noremap = true })
-map('n', '<space>ие', ':NeoTreeRevealToggle<CR>', { silent = true, noremap = true })
-map('', '<space>bb', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
-map('', '<space>ии', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
+-- map('n', '<space>bt', ':Neotree filesystem reveal toggle<CR>', { silent = true, noremap = true })
+-- map('n', '<space>ие', ':Neotree filesystem reveal toggle<CR>', { silent = true, noremap = true })
+-- map('', '<space>bb', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
+-- map('', '<space>ии', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
 
+map('', '<space>bb', ':Telescope buffers<CR>', { silent = true, noremap  = true})
+map('', '<space>ии', ':Telescope buffers<CR>', { silent = true, noremap  = true})
 
 map('', '<space>fo', ':e ', {noremap = true})
 map('', '<space>fd', ':Remove!<CR>', { noremap=true})
+
+map('', '<space>hs', ':setlocal hlsearch<CR>', {noremap=true})
+-- переключение между связанными файлами
+-- в рельсом проекте
+map('', '<space>ja', ':A<CR>', {noremap = true})
+map('', '<space>оф', ':A<CR>', {noremap = true})
+map('', '<space>jr', ':R<CR>', {noremap = true})
+map('', '<space>ок', ':R<CR>', {noremap = true})
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
@@ -61,6 +77,9 @@ map('', '<space>fd', ':Remove!<CR>', { noremap=true})
 map("n", "<space>pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 map("n", "<space>d", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
+map("n", "<space>в", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
 map("n", "<space>bs", "<cmd>Telescope lsp_document_symbols<CR>", { silent = true })
 map("n", "<space>ws", "<cmd>Telescope lsp_workspace_symbols<CR>", { silent = true })
 map("n", "<space>gr", "<cmd>Telescope lsp_references<CR>", { silent = true })
+
+map('n', '<C-e>u', '<cmd>PackerUpdate<CR>', {silent = true })

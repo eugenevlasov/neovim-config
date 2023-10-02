@@ -1,12 +1,13 @@
 {
     "suggest": {
         "minTriggerInputLength": 3,
+        "enableFloat": false,
         "floatConfig": {
             "border": true,
             "rounded": true,
             "shadow: true"
         },
-        pum"floatConfig": {
+        "pumfloatConfig": {
             "border": true,
             "rounded": true,
             "shadow: true"

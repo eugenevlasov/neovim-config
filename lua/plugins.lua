@@ -12,7 +12,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+use 'wbthomason/packer.nvim'
   -- My plugins here
 
 ---- scrool smooth
@@ -20,8 +20,9 @@ use 'psliwka/vim-smoothie'
 -----
 ---- цветовая схема
 -----
-use { 'mhartington/oceanic-next' }
-use { 'Mofiqul/vscode.nvim' }
+-- use { 'mhartington/oceanic-next' }
+-- use { 'Mofiqul/vscode.nvim' }
+use 'tomasiser/vim-code-dark'
 -----
 ---- управление буферами
 -----
@@ -33,12 +34,10 @@ use {
 -----
 ---- статусная строка
 -----
+use 'nvim-tree/nvim-web-devicons'
 use {
   'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  config = function()
-	  require('lualine').setup()
-  end,
+  requires = { 'nvim-tree/nvim-web-devicons'}
 }
 -----
 ---- умный f
@@ -66,9 +65,9 @@ use 'airblade/vim-rooter'
 
 ---- дополнительные текстовые объекты
 use 'wellle/targets.vim'
-use 'kana/vim-textobj-user'
-use 'rhysd/vim-textobj-ruby'
-use 'nelstrom/vim-textobj-rubyblock'
+-- use 'kana/vim-textobj-user'
+-- use 'rhysd/vim-textobj-ruby'
+-- use 'nelstrom/vim-textobj-rubyblock'
 
 ---- подстветка парные скобки и тд
 ---- use 'andymass/vim-matchup'
@@ -90,11 +89,24 @@ use { 'folke/which-key.nvim' }
 use 'tpope/vim-commentary'
 ----
 ---- уровни кода вертикальной линией обозначает
-use 'Yggdroot/indentLine'
+-- use 'Yggdroot/indentLine'
+use "lukas-reineke/indent-blankline.nvim"
+
+---- Treesitter
+use({
+    'nvim-treesitter/nvim-treesitter'
+    -- run = ':TSUpdate'
+})
+---- Treesitter-text-objects
+use({
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  -- after = "nvim-treesitter",
+  -- requires = "nvim-treesitter/nvim-treesitter"
+})
 
 ---- Telescope
 use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  'nvim-telescope/telescope.nvim', tag = '0.1.1',
 -- or                            , branch = '0.1.x',
   requires = { 
       {'nvim-lua/plenary.nvim'},
@@ -107,17 +119,23 @@ use {
 -----
 use {
     'neovim/nvim-lspconfig',
-    -- Configurations for Nvim LSP
-
-    config = function()
-        require('lspconfig').setup()
-    end
 }
 
 use {
     "glepnir/lspsaga.nvim",
     branch = "main"
 }
+
+use {
+    "williamboman/mason.nvim",
+    'williamboman/mason-lspconfig.nvim',
+    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+}
+--- LSP
+----
+-- Pretty folding
+--
+use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
 ---
 -- nvim-notify
@@ -141,19 +159,28 @@ use 'rcarriga/nvim-notify'
 --  	}
 --  }
 --- coc.nvim
+-- use {'neoclide/coc.nvim', run = 'yarn install --frozen-lockfile'}
 use {'neoclide/coc.nvim', branch= 'release'}
 -----
 ---- tree view
 -----
- use {
-   "nvim-neo-tree/neo-tree.nvim",
-     branch = "v2.x",
-     requires = { 
-       "nvim-lua/plenary.nvim",
-       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-       "MunifTanjim/nui.nvim",
-     }
-   }
+ -- use {
+ --   "nvim-neo-tree/neo-tree.nvim",
+ --     branch = "v3.x",
+ --     requires = { 
+ --       "nvim-lua/plenary.nvim",
+ --       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+ --       "MunifTanjim/nui.nvim",
+ --     }
+ --   }
+----
+-- telescope file-browser
+use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+}
+    ----
+    
 --- 
 ----Автоподстановка парных скобок, кавычек и тд
 ----

@@ -34,7 +34,7 @@ require'bufferline'.setup {
     filetype = {
       -- Sets the icon's highlight group.
       -- If false, will use nvim-web-devicons colors
-      custom_colors = false,
+      custom_colors = true,
 
       -- Requires `nvim-web-devicons` if `true`
       enabled = true,
