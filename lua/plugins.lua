@@ -1,216 +1,200 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 
-local packer_bootstrap = ensure_packer()
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function(use)
-use 'wbthomason/packer.nvim'
+
+
+return require('lazy').setup({
   -- My plugins here
 
 ---- scrool smooth
-use 'psliwka/vim-smoothie'
+'psliwka/vim-smoothie',
 -----
 ---- цветовая схема
 -----
--- use { 'mhartington/oceanic-next' }
-use { 'Mofiqul/vscode.nvim' }
-use 'tomasiser/vim-code-dark'
+-- 'mhartington/oceanic-next',
+'Mofiqul/vscode.nvim' ,
+'tomasiser/vim-code-dark',
 -----
 ---- управление буферами
 -----
-use {
+{
   'romgrk/barbar.nvim',
-  requires = {'kyazdani42/nvim-web-devicons'}
-}
+  dependencies = {'kyazdani42/nvim-web-devicons'}
+},
 
 -----
 ---- статусная строка
 -----
-use 'nvim-tree/nvim-web-devicons'
-use {
+'nvim-tree/nvim-web-devicons',
+{
   'nvim-lualine/lualine.nvim',
-  requires = { 'nvim-tree/nvim-web-devicons'}
-}
+  dependencies = { 'nvim-tree/nvim-web-devicons'}
+},
 -----
 ---- умный f
 -----
-use 'rhysd/clever-f.vim'
+'rhysd/clever-f.vim',
 -----
 ---- запоминание последней позиции для перехода при открытии vim
 -----
-use 'farmergreg/vim-lastplace'
+'farmergreg/vim-lastplace',
 
 -----
 ---- умная проверка офографии
 -----
-use 'kamykn/spelunker.vim'
+'kamykn/spelunker.vim',
 
 -----
 ---- русские буквы в командном режиме
 -----
-use 'powerman/vim-plugin-ruscmd'
+'powerman/vim-plugin-ruscmd',
 
 -----
 ---- смена рабочего каталога
 -----
-use 'airblade/vim-rooter'
+'airblade/vim-rooter',
 
 ---- дополнительные текстовые объекты
-use 'wellle/targets.vim'
--- use 'kana/vim-textobj-user'
--- use 'rhysd/vim-textobj-ruby'
--- use 'nelstrom/vim-textobj-rubyblock'
+'wellle/targets.vim',
+-- 'kana/vim-textobj-',,
+-- 'rhysd/vim-textobj-ruby',
+-- 'nelstrom/vim-textobj-rubyblock',
 
 ---- подстветка парные скобки и тд
----- use 'andymass/vim-matchup'
+---- 'andymass/vim-matchup',
 
 ----объекты внутри тэгов, скобок и тд
-use 'machakann/vim-sandwich'
+'machakann/vim-sandwich',
 
 ---- slim
-use 'slim-template/vim-slim'
+'slim-template/vim-slim',
 
 ---- rails
-use 'tpope/vim-rails'
+'tpope/vim-rails',
 
 
 ---- окошко с подсказкой по командам
-use { 'folke/which-key.nvim' }
+'folke/which-key.nvim',
 
 ---- комментирование кода
-use 'tpope/vim-commentary'
+'tpope/vim-commentary',
 ----
 ---- уровни кода вертикальной линией обозначает
--- use 'Yggdroot/indentLine'
-use "lukas-reineke/indent-blankline.nvim"
+-- 'Yggdroot/indentLine',
+'lukas-reineke/indent-blankline.nvim',
 
 ---- Treesitter
-use({
-    'nvim-treesitter/nvim-treesitter'
-    -- run = ':TSUpdate'
-})
+'nvim-treesitter/nvim-treesitter',
 ---- Treesitter-text-objects
-use({
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  -- after = "nvim-treesitter",
-  -- requires = "nvim-treesitter/nvim-treesitter"
-})
+'nvim-treesitter/nvim-treesitter-textobjects',
 
 ---- Telescope
-use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.4',
+{
+  'nvim-telescope/telescope.nvim', version = '0.1.4',
 -- or                            , branch = '0.1.x',
-  requires = { 
+  dependencies = { 
       {'nvim-lua/plenary.nvim'},
-  --     -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'  }
-      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make'  }
+  --     -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make'  }
+      { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make'  }
   },
-}
+},
 -----
 ---- LSP
 -----
-use {
-    'neovim/nvim-lspconfig',
-}
+'neovim/nvim-lspconfig',
+'glepnir/lspsaga.nvim',
 
-use {
-    "glepnir/lspsaga.nvim"
-}
-
-use {
+{
     "williamboman/mason.nvim",
     'williamboman/mason-lspconfig.nvim',
-    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
-}
+    build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+},
 --- LSP
 ----
 -- Pretty folding
 --
-use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+{'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'},
 
 ---
 -- nvim-notify
 --- 
-use 'rcarriga/nvim-notify'
+'rcarriga/nvim-notify',
 
 -----
 ---- autocomplete
 -----" main one
--- use {'ms-jpq/coq_nvim', branch =  'coq' }
+-- {'ms-jpq/coq_nvim', branch =  'coq' },
 
 --- nvim-cmp
--- use { 'hrsh7th/nvim-cmp',
---          requires = {
+-- { 'hrsh7th/nvim-cmp',
+--          dependencies = {
 --  {'hrsh7th/cmp-nvim-lsp'},
 --  {'hrsh7th/cmp-buffer'},
 --  {'hrsh7th/cmp-path'},
 --  {'hrsh7th/cmp-cmdline'},
---          {'tzachar/cmp-tabnine', run='./install.sh'},
+--          {'tzachar/cmp-tabnine', build='./install.sh'},
 --          {'hrsh7th/cmp-nvim-lsp-signature-help'}
 --  	}
---  }
+--  },
 --- coc.nvim
--- use {'neoclide/coc.nvim', run = 'yarn install --frozen-lockfile'}
-use {'neoclide/coc.nvim', branch= 'release'}
+-- {'neoclide/coc.nvim', build = 'yarn install --frozen-lockfile'},
+{'neoclide/coc.nvim', branch= 'release'},
 -----
 ---- tree view
 -----
- -- use {
+ -- {
  --   "nvim-neo-tree/neo-tree.nvim",
  --     branch = "v3.x",
- --     requires = { 
+ --     dependencies = { 
  --       "nvim-lua/plenary.nvim",
  --       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
  --       "MunifTanjim/nui.nvim",
  --     }
- --   }
+ --   },
 ----
 -- telescope file-browser
-use {
+{
     "nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-}
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+},
     ----
     
 --- 
 ----Автоподстановка парных скобок, кавычек и тд
 ----
-use {"windwp/nvim-autopairs"}
+'windwp/nvim-autopairs',
 -----
 ---- VGit
 -----
-use {
+{
   'tanvirtin/vgit.nvim',
-  requires = {
+  dependencies = {
     'nvim-lua/plenary.nvim'
   }
-}
+},
 ---
 -- snippets
 ---
-use 'honza/vim-snippets'
+'honza/vim-snippets',
 ---
 -- vim-fetch
 --  Открывает файл с номером строки
 --  default_service_spec.rb:11
-use 'wsdjeg/vim-fetch'
+'wsdjeg/vim-fetch',
 -- удаление файлов и тд
-use 'tpope/vim-eunuch'
+'tpope/vim-eunuch',
 
 ---- startscreen
-use 'mhinz/vim-startify'
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+'mhinz/vim-startify'
+})

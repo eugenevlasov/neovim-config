@@ -82,4 +82,4 @@ map("n", "<space>bs", "<cmd>Telescope lsp_document_symbols<CR>", { silent = true
 map("n", "<space>ws", "<cmd>Telescope lsp_workspace_symbols<CR>", { silent = true })
 map("n", "<space>gr", "<cmd>Telescope lsp_references<CR>", { silent = true })
 
-map('n', '<C-e>u', '<cmd>PackerUpdate<CR>', {silent = true })
+map('n', '<C-e>u', '<cmd>Lazy sync<CR>', {silent = true })
