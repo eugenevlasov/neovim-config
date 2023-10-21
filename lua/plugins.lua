@@ -21,7 +21,7 @@ use 'psliwka/vim-smoothie'
 ---- цветовая схема
 -----
 -- use { 'mhartington/oceanic-next' }
--- use { 'Mofiqul/vscode.nvim' }
+use { 'Mofiqul/vscode.nvim' }
 use 'tomasiser/vim-code-dark'
 -----
 ---- управление буферами
@@ -106,11 +106,11 @@ use({
 
 ---- Telescope
 use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  'nvim-telescope/telescope.nvim', tag = '0.1.4',
 -- or                            , branch = '0.1.x',
   requires = { 
       {'nvim-lua/plenary.nvim'},
-      -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'  }
+  --     -- { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'  }
       { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make'  }
   },
 }
@@ -122,8 +122,7 @@ use {
 }
 
 use {
-    "glepnir/lspsaga.nvim",
-    branch = "main"
+    "glepnir/lspsaga.nvim"
 }
 
 use {

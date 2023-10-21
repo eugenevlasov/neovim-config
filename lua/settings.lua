@@ -16,8 +16,8 @@ opt.termguicolors = true      --  24-bit RGB colors
 
 -- Use the colorscheme
 -- cmd 'colorscheme OceanicNext'
--- cmd 'colorscheme vscode'
-cmd 'colorscheme codedark'
+cmd 'colorscheme vscode'
+-- cmd 'colorscheme codedark'
 
 cmd([[
   syntax on
