@@ -1,0 +1,47 @@
+return {
+    -- 'ms-jpq/coq_nvim',
+    -- branch = 'coq',
+    -- config = function()
+    --     print('coq')
+    --     vim.g.coq_settings = {
+    --         completion = {
+    --             always = true
+    --         },
+    --         auto_start = 'shut-up',
+    --         clients = {
+    --             snippets = {
+    --                 enabled = false
+    --             },
+    --             tmux = { enabled = false },
+    --             tags = { enabled = false },
+
+    --             tabnine = { enabled = true, always_on_top = false }
+    --         },
+    --         limits = {
+    --             completion_auto_timeout = 0.8
+    --         },
+    --         keymap = {
+    --             pre_select = true,
+    --         },
+    --         display = {
+    --             ghost_text = { enabled = false },
+    --             icons = { mode = "short" },
+    --             pum = {
+    --                 fast_close = false
+    --             },
+    --             preview = {
+    --                 enabled = false,
+    --                 -- positions = {
+    --                 --     ["north"] = null,
+    --                 --     ["east"] = null,
+    --                 --     ["west"] = null,
+    --                 --     ["south"] = null
+    --                 -- }
+    --             }
+    --         }
+    --     }
+
+    --     local coq = require('coq')
+    --     vim.cmd([[COQnow]])
+    -- end,
+}

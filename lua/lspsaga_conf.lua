@@ -5,7 +5,3 @@ saga.setup({
         enable = false
     }
 })
--- saga.init_lsp_saga({
---     finder_request_timeout = 30000
---     -- your configuration
--- })

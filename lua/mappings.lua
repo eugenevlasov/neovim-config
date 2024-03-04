@@ -11,10 +11,14 @@ map('i','<Down>', '<NOP>', { noremap = true})
 map('i','<Left>', '<NOP>', { noremap = true})
 map('i','<Right>', '<NOP>', { noremap = true})
 
+map('i', 'hh', '<ESC>', { noremap = true})
+map('i', 'рр', '<ESC>', { noremap = true})
+map('c', 'hh', '<ESC>', { noremap = true})
 map('n', '<C-P>', ':Telescope find_files<CR>', { silent = true, noremap = true})
 map('n', '<C-Y>', ':Telescope grep_string<CR>', { silent = true, noremap = true})
-map('n', '<C-T>', ':Telescope live_grep<CR>', { silent = true, noremap = true})
--- map('n', '<C-F>f', ':lua require"telescope.builtin".find_files({cwd = require("telescope.utils").buffer_dir()})<CR>', { silent = true, noremap = true})
+-- map('n', '<C-T>', ':Telescope live_grep<CR>', { silent = true, noremap = true})
+map('n', '<C-T>', ':lua require(\'telescope\').extensions.live_grep_args.live_grep_args()<CR>', { silent = true, noremap = true})
+
 map('n', '<C-F>f', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { silent = true, noremap = true})
 map('n', '<C-F>d', ':lua require"telescope.builtin".find_files({search_dirs={vim.api.nvim_call_function(\'RubyCursorFile\',{})}})<CR>', { silent = true, noremap = true})
 map('n', '<space>gf', ':lua require"telescope.builtin".find_files({search_file=vim.api.nvim_call_function(\'RubyCursorFile\',{})})<CR>', { silent = true, noremap = true})
@@ -51,11 +55,7 @@ map('', '<space>н','"+y', { silent = true })
 map('', '<space>yy','"+yy', { silent = true })
 map('', '<space>нн','"+yy', { silent = true })
 map('', '<space>yf',':let @+=@%<CR>', {silent = true, noremap = true} )
-
--- map('n', '<space>bt', ':Neotree filesystem reveal toggle<CR>', { silent = true, noremap = true })
--- map('n', '<space>ие', ':Neotree filesystem reveal toggle<CR>', { silent = true, noremap = true })
--- map('', '<space>bb', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
--- map('', '<space>ии', ':Neotree buffers toggle<CR>', { silent = true, noremap  = true})
+map('', '<space>на',':let @+=@%<CR>', {silent = true, noremap = true} )
 
 map('', '<space>bb', ':Telescope buffers<CR>', { silent = true, noremap  = true})
 map('', '<space>ии', ':Telescope buffers<CR>', { silent = true, noremap  = true})
@@ -70,12 +70,14 @@ map('', '<space>ja', ':A<CR>', {noremap = true})
 map('', '<space>оф', ':A<CR>', {noremap = true})
 map('', '<space>jr', ':R<CR>', {noremap = true})
 map('', '<space>ок', ':R<CR>', {noremap = true})
+--
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
+
 map("n", "<space>pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
-map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+map("n", "gh", "<cmd>Lspsaga finder<CR>", { silent = true })
 map("n", "<space>d", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
 map("n", "<space>в", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
 map("n", "<space>bs", "<cmd>Telescope lsp_document_symbols<CR>", { silent = true })
