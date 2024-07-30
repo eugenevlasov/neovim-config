@@ -31,6 +31,8 @@ map('n', '<C-F>m', ':lua require"telescope.builtin".find_files({cwd = \'./app/mo
 map('n', '<C-F>jb', ':lua require"telescope.builtin".find_files({cwd = \'./app/jobs/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>js', ':lua require"telescope.builtin".find_files({cwd = \'./app/assets/javascripts/\'})<CR>', { silent = true, noremap = true})
 map('n', '<C-F>e', ':lua require"telescope.builtin".find_files({cwd = \'./engines/\'})<CR>', { silent = true, noremap = true})
+map('n', '<C-F>l', ':call localorie#translate()<CR>', { silent = true, noremap = true})
+map('n', '<space>le', ':echo localorie#expand_key()<CR>', { silent = true, noremap = true})
 
 map('n', '<space>ro', ':Telescope oldfiles<CR>', { silent = true, noremap = true})
 map('n', '<tab>', '<C-W>w', {})
@@ -78,10 +80,14 @@ map('', '<space>ок', ':R<CR>', {noremap = true})
 
 map("n", "<space>pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 map("n", "gh", "<cmd>Lspsaga finder<CR>", { silent = true })
-map("n", "<space>d", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
-map("n", "<space>в", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
+-- map("n", "<space>d", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
+-- map("n", "<space>d", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
+-- map("n", "<space>в", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
 map("n", "<space>bs", "<cmd>Telescope lsp_document_symbols<CR>", { silent = true })
 map("n", "<space>ws", "<cmd>Telescope lsp_workspace_symbols<CR>", { silent = true })
 map("n", "<space>gr", "<cmd>Telescope lsp_references<CR>", { silent = true })
 
 map('n', '<C-e>u', '<cmd>Lazy sync<CR>', {silent = true })
+map("n", "<space>gp", "<Esc><cmd>lua require('telescope').extensions.gen.prompts({ mode = 'n'})<CR>", { silent = true})
+map("v", "<space>gp", "<Esc><cmd>lua require('telescope').extensions.gen.prompts({ mode = 'v'})<CR>", {silent = true})
+

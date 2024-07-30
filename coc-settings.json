@@ -1,4 +1,5 @@
 {
+    "colors.enable": true,
     "diagnostic.enable": false,
     "suggest": {
         "minTriggerInputLength": 3,
@@ -6,7 +7,7 @@
         "floatConfig": {
             "border": true,
             "rounded": true,
-    "shadow": true",
+            "shadow": false,
         },
         "pumfloatConfig": {
             "border": true,
@@ -29,7 +30,7 @@
         "priority": 4,
         "shortcut": "T9"
     },
-    "coc.source.tag":{
+    "tag":{
         "priority": 6
     }
     /*

@@ -12,18 +12,25 @@ local opt = vim.opt            -- global/buffer/windows-scoped options
 -----------------------------------------------------------
 -- Цветовая схема
 -----------------------------------------------------------
-opt.termguicolors = true --  24-bit RGB colors
+-- opt.termguicolors = true --  24-bit RGB colors
 
+cmd([[
+    hi Constant ctermfg=13 guifg=NvimLightBlue
+    hi rubyConstant ctermfg=13 guifg=NvimLightBlue
+    hi Type ctermfg=13 guifg=LightGreen
+    hi Statement ctermfg=13 guifg=LightYellow
+    hi CocMenuSel ctermbg=237 guibg=#414141
+]])
 -- Use the colorscheme
 -- cmd 'colorscheme OceanicNext'
-cmd 'colorscheme vscode'
+-- cmd 'colorscheme vscode'
 -- cmd 'colorscheme codedark'
 
 cmd([[
-  syntax on
   filetype on
   filetype plugin indent on
 ]])
+-- syntax on
 -- filetype indent on
 -- filetype plugin indent on
 -----------------------------------------------------------
@@ -52,7 +59,7 @@ opt.hlsearch = false -- подсветка результатов поиска
 opt.splitbelow = true
 opt.splitright = true
 
-opt.undofile = true                         -- бесконечное отмена
+opt.undofile = true                           -- бесконечное отмена
 opt.undodir = vim.fn.expand('~/.vim/undodir') -- каталог для хранения бесконечной отмены
 
 
@@ -72,10 +79,10 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 --
 -- подстветка орфографических ошибок
 -- hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline
-cmd([[
-    hi SpellBad gui=underline
-    hi SpelunkerSpellBad cterm=underline gui=underline
-]])
+-- hi SpelunkerSpellBad cterm=underline gui=underline
+-- cmd([[
+--     hi SpellBad gui=underline guifg=lightred
+-- ]])
 
 -- подсветка 100 символя в строке
 cmd([[
@@ -98,7 +105,7 @@ cmd([[
     autocmd BufNewFile,BufRead *.development setf bash
     autocmd BufNewFile,BufRead *.production setf bash
 ]])
--- отключаем колонку слева со сворачиванием
+-- отключаем колонку слева со сворачиванием при большом количестве строчке
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
     callback = function()
