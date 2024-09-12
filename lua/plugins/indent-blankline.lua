@@ -6,7 +6,7 @@ return {
         require("ibl").setup {
             indent = {
                 char = ' ',
-                smart_indent_cap = true
+                -- smart_indent_cap = true,
             },
             scope = {
                 enabled = true,

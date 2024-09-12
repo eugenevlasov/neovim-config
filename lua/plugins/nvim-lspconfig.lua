@@ -24,6 +24,7 @@ return {
 
                 -- bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
                 bufmap('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<cr>')
+                bufmap('n', '<space>в', '<cmd>lua vim.lsp.buf.definition()<cr>')
                 -- bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.declaration()<cr>')
                 -- bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
                 -- bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
@@ -35,7 +36,8 @@ return {
                 -- bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
                 -- bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
                 -- bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-                bufmap('n', '<space>f', '<cmd> lua vim.lsp.buf.format({async = true})<cr>')
+                -- bufmap('n', '<space>f', '<cmd> lua vim.lsp.buf.format({async = true})<cr>')
+                -- bufmap('n', '<space>а', '<cmd> lua vim.lsp.buf.format({async = true})<cr>')
             end
         })
         ---
@@ -94,12 +96,17 @@ return {
 
         -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
         -- local coq_capabilities = require('coq')
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true
+        }
         require('lspconfig').solargraph.setup({
             capabilities = capabilities,
             -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
         })
 
-        require('lspconfig').tsserver.setup({
+        require('lspconfig').ts_ls.setup({
             capabilities = capabilities,
             -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
         })
@@ -120,6 +127,35 @@ return {
             capabilities = capabilities,
             -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
         })
+
+        require('lspconfig').lemminx.setup({
+            capabilities = capabilities,
+            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
+        })
+        -- fuzzy_ruby_server
+        -- local configs = require 'lspconfig.configs'
+        -- if not configs.fuzzy_ls then
+        --     configs.fuzzy_ls = {
+        --         default_config = {
+        --             cmd = { '/Users/frodo/.vscode/extensions/blinknlights.fuzzy-ruby-server-1.0.0/bin/fuzzy_darwin-arm64' },
+        --             filetypes = { 'ruby' },
+        --             root_dir = function(fname)
+        --                 return lspconfig.util.find_git_ancestor(fname)
+        --             end,
+        --             settings = {},
+        --             init_options = {
+        --                 allocationType = "ram",
+        --                 indexGems = true,
+        --                 reportDiagnostics = true
+        --             },
+        --         },
+        --     }
+        -- end
+        --
+        -- lspconfig.fuzzy_ls.setup {
+        --     on_attach = on_attach
+        -- }
+        -- fuzzy_ruby_server
         vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
             vim.lsp.handlers.hover,
             { border = 'rounded' }

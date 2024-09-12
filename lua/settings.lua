@@ -49,6 +49,7 @@ opt.autoindent = true
 opt.hidden = true                 -- возможность перейти на другой буфер, если текущий не сохранен
 opt.signcolumn = 'yes'
 
+opt.scrolloff = 10        -- кол-во строчек сверху или снизу экрана при переменщении курсора
 opt.number = true         -- Включаем нумерацию строк
 opt.relativenumber = true -- Вкл. относительную нумерацию строк
 

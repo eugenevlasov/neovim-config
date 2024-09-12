@@ -3,7 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     config = function()
         require 'nvim-treesitter.configs'.setup {
-            ensure_installed = { "ruby", "lua", "vim", "xml", "javascript", "bash", "html", "sql", "json" },
+            ensure_installed = { "ruby", "lua", "vim", "xml", "javascript", "bash", "html", "sql", "json", "csv", "yaml"},
             endwise = {
                 enable = true -- что бы это работало нужен плугин RRethy/nvim-treesitter-endwise
             },
@@ -43,5 +43,7 @@ return {
             }
         }
         vim.treesitter.language.register('xml', 'html')
+        vim.treesitter.language.register('yaml', 'yml')
+        vim.treesitter.language.register('yaml', 'eruby.yaml')
     end
 }
