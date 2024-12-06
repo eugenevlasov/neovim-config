@@ -14,7 +14,7 @@ return {
     --             },
     --             tmux = { enabled = false },
     --             tags = { enabled = false },
-
+    --
     --             tabnine = { enabled = true, always_on_top = false }
     --         },
     --         limits = {
@@ -40,7 +40,7 @@ return {
     --             }
     --         }
     --     }
-
+    --
     --     local coq = require('coq')
     --     vim.cmd([[COQnow]])
     -- end,

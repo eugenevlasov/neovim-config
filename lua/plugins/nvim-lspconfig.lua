@@ -25,6 +25,9 @@ return {
                 -- bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
                 bufmap('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<cr>')
                 bufmap('n', '<space>в', '<cmd>lua vim.lsp.buf.definition()<cr>')
+
+                -- bufmap('n', '<space>vd', ':vsplit | lua vim.lsp.buf.definition()<cr>')
+                -- bufmap('n', '<space>мв', ':vsplit | lua vim.lsp.buf.definition()<cr>')
                 -- bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.declaration()<cr>')
                 -- bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
                 -- bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')

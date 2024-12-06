@@ -2,6 +2,7 @@ return {
     ---- уровни кода вертикальной линией обозначает
     -- 'Yggdroot/indentLine',
     'lukas-reineke/indent-blankline.nvim',
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
         require("ibl").setup {
             indent = {

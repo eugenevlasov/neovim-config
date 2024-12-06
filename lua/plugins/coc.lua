@@ -27,6 +27,9 @@ return {
         keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
         -- GoTo code navigation
         keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
+
+        keyset("n", "<space>vd", "<cmd>call CocAction('jumpDefinition', 'vsplit')<cr>", { silent = true })
+        keyset("n", "<space>мв", "<cmd>call CocAction('jumpDefinition', 'vsplit')<cr>", { silent = true })
         -- Symbol renaming
         keyset("n", "<F2>", "<Plug>(coc-rename)", { silent = true })
         -- Use K to show documentation in preview window

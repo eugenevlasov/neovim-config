@@ -57,6 +57,10 @@ map('n', '<space>ио', ':BufferPick<CR>', { silent = true, noremap = true })
 map('', '<space>bD', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap = true })
 map('', '<space>иВ', ':BufferCloseAllButCurrent<CR>', { silent = true, noremap = true })
 
+map('', '<space>bc', ':BufferCloseAllButPinned<CR>', { silent = true, noremap = true })
+map('', '<space>ис', ':BufferCloseAllButPinned<CR>', { silent = true, noremap = true })
+map('', '<space>br', ':BufferRestore<CR>', { silent = true, noremap = true })
+map('', '<space>ик', ':BufferRestore<CR>', { silent = true, noremap = true })
 map('', '<space>s', ':w<CR>', { silent = true, noremap = true })
 map('', '<space>ы', ':w<CR>', { silent = true, noremap = true })
 

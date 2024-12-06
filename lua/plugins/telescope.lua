@@ -1,12 +1,12 @@
 return ---- Telescope
 {
     'nvim-telescope/telescope.nvim',
-    version = '0.1.8',
+    -- version = '0.1.8',
     -- or                            , branch = '0.1.x',
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
         --     -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make'  }
-        { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
+        -- { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
         {
             "nvim-telescope/telescope-live-grep-args.nvim",
             -- This will not install any breaking changes.
@@ -56,38 +56,41 @@ return ---- Telescope
             },
             pickers = {
                 find_files = {
-                    on_input_filter_cb = function(prompt)
-                        local find_colon = string.find(prompt, ":")
-                        if find_colon then
-                            local ret = string.sub(prompt, 1, find_colon - 1)
-                            vim.schedule(function()
-                                local prompt_bufnr = vim.api.nvim_get_current_buf()
-                                local picker = action_state.get_current_picker(prompt_bufnr)
-                                local lnum = tonumber(prompt:sub(find_colon + 1))
-                                if type(lnum) == "number" then
-                                    local win = picker.previewer.state.winid
-                                    local bufnr = picker.previewer.state.bufnr
-                                    local line_count = vim.api.nvim_buf_line_count(bufnr)
-                                    vim.api.nvim_win_set_cursor(win, { math.max(1, math.min(lnum, line_count)), 0 })
-                                end
-                            end)
-                            return { prompt = ret }
-                        end
-                    end,
-                    attach_mappings = function()
-                        actions.select_default:enhance {
-                            post = function()
-                                -- if we found something, go to line
-                                local prompt = action_state.get_current_line()
-                                local find_colon = string.find(prompt, ":")
-                                if find_colon then
-                                    local lnum = tonumber(prompt:sub(find_colon + 1))
-                                    vim.api.nvim_win_set_cursor(0, { lnum, 0 })
-                                end
-                            end,
-                        }
-                        return true
-                    end,
+                    -- БОЛЬШЕ не НУЖНО - теперь telescope из коробки это уже
+                    -- умеет
+                    -- on_input_filter_cb = function(prompt)
+                    --     local find_colon = string.find(prompt, ":")
+                    --     if find_colon then
+                    --         local ret = string.sub(prompt, 1, find_colon - 1)
+                    --         vim.schedule(function()
+                    --             local prompt_bufnr = vim.api.nvim_get_current_buf()
+                    --             local picker = action_state.get_current_picker(prompt_bufnr)
+                    --             local lnum = tonumber(prompt:sub(find_colon + 1))
+                    --             if type(lnum) == "number" then
+                    --                 local win = picker.previewer.state.winid
+                    --                 local bufnr = picker.previewer.state.bufnr
+                    --                 local line_count = vim.api.nvim_buf_line_count(bufnr)
+                    --                 print(math.max(1, math.min(lnum, line_count)))
+                    --                 vim.api.nvim_win_set_cursor(win, { math.max(1, math.min(lnum, line_count)), 0 })
+                    --             end
+                    --         end)
+                    --         return { prompt = ret }
+                    --     end
+                    -- end,
+                    -- attach_mappings = function()
+                    --     actions.select_default:enhance {
+                    --         post = function()
+                    --             -- if we found something, go to line
+                    --             local prompt = action_state.get_current_line()
+                    --             local find_colon = string.find(prompt, ":")
+                    --             if find_colon then
+                    --                 local lnum = tonumber(prompt:sub(find_colon + 1))
+                    --                 vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+                    --             end
+                    --         end,
+                    --     }
+                    --     return true
+                    -- end,
                 },
             }
         }
@@ -95,10 +98,10 @@ return ---- Telescope
         -- load_extension, somewhere after setup function:
         -- require('telescope').load_extension('fzf')
         -- require('telescope').load_extension('fzy_native')
-        require('telescope').load_extension('zf-native')
+        -- require('telescope').load_extension('gen')
         require('telescope').load_extension('file_browser')
         require('telescope').load_extension('yank_history')
         require('telescope').load_extension('live_grep_args')
-        require('telescope').load_extension('gen')
+        require('telescope').load_extension('zf-native')
     end
 }

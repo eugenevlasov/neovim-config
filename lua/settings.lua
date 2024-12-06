@@ -21,6 +21,7 @@ cmd([[
     hi Statement ctermfg=13 guifg=LightYellow
     hi CocMenuSel ctermbg=237 guibg=#414141
 ]])
+
 -- Use the colorscheme
 -- cmd 'colorscheme OceanicNext'
 -- cmd 'colorscheme vscode'
@@ -52,10 +53,8 @@ opt.signcolumn = 'yes'
 opt.scrolloff = 10        -- кол-во строчек сверху или снизу экрана при переменщении курсора
 opt.number = true         -- Включаем нумерацию строк
 opt.relativenumber = true -- Вкл. относительную нумерацию строк
-
-
 opt.hlsearch = false -- подсветка результатов поиска
-
+opt.laststatus = 3
 -- opt.lazyredraw = true
 opt.splitbelow = true
 opt.splitright = true
