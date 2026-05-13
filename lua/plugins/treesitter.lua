@@ -1,51 +1,38 @@
 return {
-
-    ---- Treesitter
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
+    build = ':TSUpdate',
     config = function()
-        require 'nvim-treesitter.configs'.setup {
-            ensure_installed = { "ruby", "lua", "vim", "xml", "javascript", "bash", "html", "sql", "json", "csv", "yaml", "cpp"},
-	    --, "slim"},
-            endwise = {
-                enable = true -- что бы это работало нужен плугин RRethy/nvim-treesitter-endwise
-            },
-            textobjects = {
-                -- lsp_interop = {
-                --     enable = true,
-                --     peek_definition_code = {
-                --         ["<space>if"] = "@function.outer"
-                --     },
-                -- },
-                select = {
-                    enable = true,
-                    lookahead = true,
-                    keymaps = {
-                        ["am"] = "@function.outer",
-                        ["im"] = "@function.inner",
-                        ["ib"] = "@block.inner",
-                        ["ab"] = "@block.outer",
-                        ["iM"] = "@class.inner",
-                        ["aM"] = "@class.outer"
-                    }
-                }
-            },
-
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-                disable = function(lang, bufnr) -- Disable in large buffers
-                    return vim.api.nvim_buf_line_count(bufnr) > 1000
-                end
-            },
-            incremental_selection = {
-                enable = true
-            },
-            indent = {
-                enable = true
-            }
+        local parsers = {
+            'ruby', 'lua', 'vim', 'vimdoc', 'xml',
+            'javascript', 'bash', 'html', 'sql',
+            'json', 'csv', 'yaml', 'cpp',
         }
-        vim.treesitter.language.register('xml', 'html')
+
+        require('nvim-treesitter').install(parsers)
+
+        vim.treesitter.language.register('xml',  'html')
         vim.treesitter.language.register('yaml', 'yml')
         vim.treesitter.language.register('yaml', 'eruby.yaml')
-    end
+
+        local big_file_lines = 1000
+
+        vim.api.nvim_create_autocmd('FileType', {
+            group = vim.api.nvim_create_augroup('UserTreesitterStart', { clear = true }),
+            callback = function(args)
+                local bufnr = args.buf
+                if vim.api.nvim_buf_line_count(bufnr) > big_file_lines then
+                    return
+                end
+
+                local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
+                if not lang then
+                    return
+                end
+
+                pcall(vim.treesitter.start, bufnr, lang)
+            end,
+        })
+    end,
 }

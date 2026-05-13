@@ -1,8 +1,8 @@
 return {
-    'norcalli/nvim-colorizer.lua',
+    'catgoose/nvim-colorizer.lua',
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-        local opt = vim.opt            -- global/buffer/windows-scoped options
-        opt.termguicolors = true
-        require 'colorizer'.setup()
+        vim.opt.termguicolors = true
+        require('colorizer').setup()
     end
 }
