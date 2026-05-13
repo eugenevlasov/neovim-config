@@ -1,3 +1,3 @@
 return {
-    "dj95/telescope-gen.nvim"
+--    "dj95/telescope-gen.nvim"
 }

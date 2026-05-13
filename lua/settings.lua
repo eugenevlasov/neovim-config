@@ -20,6 +20,8 @@ cmd([[
     hi Type ctermfg=13 guifg=LightGreen
     hi Statement ctermfg=13 guifg=LightYellow
     hi CocMenuSel ctermbg=237 guibg=#414141
+    hi BufferCurrent cterm=bold ctermfg=255 gui=bold guifg=#000000 guibg=#fffff0
+
 ]])
 
 -- Use the colorscheme
@@ -34,6 +36,8 @@ cmd([[
 -- syntax on
 -- filetype indent on
 -- filetype plugin indent on
+
+g.have_nerd_font = true
 -----------------------------------------------------------
 -- Главные
 -----------------------------------------------------------
@@ -53,12 +57,15 @@ opt.signcolumn = 'yes'
 opt.scrolloff = 10        -- кол-во строчек сверху или снизу экрана при переменщении курсора
 opt.number = true         -- Включаем нумерацию строк
 opt.relativenumber = true -- Вкл. относительную нумерацию строк
-opt.hlsearch = false -- подсветка результатов поиска
+opt.hlsearch = false      -- подсветка результатов поиска
 opt.laststatus = 3
 -- opt.lazyredraw = true
 opt.splitbelow = true
 opt.splitright = true
 
+opt.backup = false
+opt.writebackup = false
+opt.swapfile =  false
 opt.undofile = true                           -- бесконечное отмена
 opt.undodir = vim.fn.expand('~/.vim/undodir') -- каталог для хранения бесконечной отмены
 
@@ -77,6 +84,7 @@ opt.foldenable = true
 opt.foldcolumn = "1"
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 --
+
 -- подстветка орфографических ошибок
 -- hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline
 -- hi SpelunkerSpellBad cterm=underline gui=underline

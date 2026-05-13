@@ -1,9 +1,11 @@
 return {
+
     ---- Treesitter
     'nvim-treesitter/nvim-treesitter',
     config = function()
         require 'nvim-treesitter.configs'.setup {
-            ensure_installed = { "ruby", "lua", "vim", "xml", "javascript", "bash", "html", "sql", "json", "csv", "yaml"},
+            ensure_installed = { "ruby", "lua", "vim", "xml", "javascript", "bash", "html", "sql", "json", "csv", "yaml", "cpp"},
+	    --, "slim"},
             endwise = {
                 enable = true -- что бы это работало нужен плугин RRethy/nvim-treesitter-endwise
             },

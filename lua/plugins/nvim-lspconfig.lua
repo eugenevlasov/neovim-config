@@ -3,9 +3,10 @@ return {
     ---- LSP
     -----
     'neovim/nvim-lspconfig',
+    dependencies = { 'saghen/blink.cmp' },
     config = function()
         -- убираем логирование
-        vim.lsp.set_log_level("off")
+        -- vim.lsp.set_log_level("off")
         -- Mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         local opts = { noremap = true, silent = true }
@@ -13,21 +14,24 @@ return {
         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
         vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-        vim.api.nvim_create_autocmd('User', {
-            pattern = 'LspAttached',
-            desc = 'LSP actions',
-            callback = function()
+        -- vim.api.nvim_create_autocmd('User', {
+        --     pattern = 'LspAttached',
+        --     desc = 'LSP actions',
+        vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(ev)
+                local client = vim.lsp.get_client_by_id(ev.data.client_id);
+                client.server_capabilities.semanticTokensProvider = nil;
                 local bufmap = function(mode, lhs, rhs)
                     local opts = { buffer = true }
                     vim.keymap.set(mode, lhs, rhs, opts)
                 end
 
-                -- bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+                bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
                 bufmap('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<cr>')
                 bufmap('n', '<space>в', '<cmd>lua vim.lsp.buf.definition()<cr>')
 
-                -- bufmap('n', '<space>vd', ':vsplit | lua vim.lsp.buf.definition()<cr>')
-                -- bufmap('n', '<space>мв', ':vsplit | lua vim.lsp.buf.definition()<cr>')
+                bufmap('n', '<space>vd', ':vsplit | lua vim.lsp.buf.definition()<cr>')
+                bufmap('n', '<space>мв', ':vsplit | lua vim.lsp.buf.definition()<cr>')
                 -- bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.declaration()<cr>')
                 -- bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
                 -- bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
@@ -104,37 +108,18 @@ return {
             dynamicRegistration = false,
             lineFoldingOnly = true
         }
-        require('lspconfig').solargraph.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
+        local blick_cmp_capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+        vim.lsp.config('*', {
+            -- capabilities  = blick_cmp_capabilities 
+            capabilities  = capabilities 
         })
 
-        require('lspconfig').ts_ls.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
-        })
-        require('lspconfig').lua_ls.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
-        })
-        require('lspconfig').clangd.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
+        vim.lsp.config('solargraph', {
+            cmd = { '/Users/frodo/start_solargraph_per_project.sh' },
+            diagnostics = true
         })
 
-        require('lspconfig').jsonls.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
-        })
-        require('lspconfig').yamlls.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
-        })
 
-        require('lspconfig').lemminx.setup({
-            capabilities = capabilities,
-            -- capabilities = coq_capabilities.lsp_ensure_capabilities(capabilities),
-        })
         -- fuzzy_ruby_server
         -- local configs = require 'lspconfig.configs'
         -- if not configs.fuzzy_ls then
@@ -159,16 +144,19 @@ return {
         --     on_attach = on_attach
         -- }
         -- fuzzy_ruby_server
-        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-            vim.lsp.handlers.hover,
-            { border = 'rounded' }
-        )
+        --- hover
+        -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+        --     vim.lsp.handlers.hover,
+        --     { border = 'rounded' }
+        -- )
+        --- hover
+        --- signature_help
+        -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+        --     vim.lsp.handlers.signature_help,
+        --     { border = 'rounded' }
+        -- )
 
-        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-            vim.lsp.handlers.signature_help,
-            { border = 'rounded' }
-        )
-
+        --- signature_help
         -- GOTO DEFINITION IN SPLIT
         -- открытие goto definition в split
         local function goto_definition(split_cmd)

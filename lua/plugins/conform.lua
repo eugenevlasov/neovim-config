@@ -14,6 +14,9 @@ return {
                 --     ruby = { 'solargraph' },
                 xml = { 'xmllint' },
                 yaml = { 'yamlfmt' },
+                sql = { 'pg_format'},
+                html = { 'htmlbeautifier'}
+
             }
         })
     end
