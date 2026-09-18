@@ -1,5 +1,4 @@
 local cmd = vim.cmd            -- execute Vim commands
-local exec = vim.api.nvim_exec -- execute Vimscript
 local g = vim.g                -- global variables
 local opt = vim.opt            -- global/buffer/windows-scoped options
 --
@@ -93,10 +92,17 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 -- ]])
 
 -- подсветка 100 символя в строке
-cmd([[
-    highlight ColorColumn ctermbg=magenta guibg=magenta
-    call matchadd('ColorColumn', '\%101v', 100)
-]])
+cmd([[ highlight ColorColumn ctermbg=magenta guibg=magenta ]])
+
+-- подсветка 101-го символа в каждом окне (matchadd -- оконный, нужен на каждое окно)
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
+    group = vim.api.nvim_create_augroup("colorcolumn_match", { clear = true }),
+    callback = function()
+        if vim.w.colorcolumn_match then return end
+        if vim.api.nvim_win_get_config(0).relative ~= '' then return end
+        vim.w.colorcolumn_match = vim.fn.matchadd('ColorColumn', '\\%101v', 100)
+    end,
+})
 -- выделение линии с курсом при выключенном termguicolors
 -- cmd([[
 --     hi clear CursorLine
@@ -114,21 +120,23 @@ cmd([[
     autocmd BufNewFile,BufRead *.production setf bash
 ]])
 -- отключаем колонку слева со сворачиванием при большом количестве строчке
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "*",
     callback = function()
-        if vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf()) > 100 then
+        if vim.api.nvim_buf_line_count(vim.api.nvim_get_current_buf()) > 2000 then
             vim.opt_local.foldcolumn = "0"
+        else
+            vim.opt_local.foldcolumn = "1"
         end
     end
 }
 )
 
 -- подсветка копируемого текста
-cmd([[
-augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
-augroup END
-]])
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
+    callback = function()
+        vim.hl.on_yank({ higroup = "IncSearch", timeout = 500 })
+    end,
+})
 g.rooter_silent_chdir = 1

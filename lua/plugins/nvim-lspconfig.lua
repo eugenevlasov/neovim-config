@@ -6,13 +6,23 @@ return {
     dependencies = { 'saghen/blink.cmp' },
     config = function()
         -- убираем логирование
-        -- vim.lsp.set_log_level("off")
+        vim.lsp.log.set_level(vim.log.levels.OFF)
         -- Mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         local opts = { noremap = true, silent = true }
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        local diagnostic_jump = function(count)
+            return function()
+                vim.diagnostic.jump({
+                    count = count,
+                    on_jump = function(_, bufnr)
+                        vim.diagnostic.open_float({ bufnr = bufnr, scope = 'cursor', focus = false })
+                    end,
+                })
+            end
+        end
+        vim.keymap.set('n', '[d', diagnostic_jump(-1), opts)
+        vim.keymap.set('n', ']d', diagnostic_jump(1), opts)
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
         -- vim.api.nvim_create_autocmd('User', {
         --     pattern = 'LspAttached',
@@ -39,7 +49,7 @@ return {
                 bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
                 -- bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
                 bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-                bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+                bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
                 -- bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
                 -- bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
                 -- bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
@@ -51,23 +61,17 @@ return {
         -- Diagnostics
         ---
 
-        local sign = function(opts)
-            vim.fn.sign_define(opts.name, {
-                texthl = opts.name,
-                text = opts.text,
-                numhl = ''
-            })
-        end
-
-        sign({ name = 'DiagnosticSignError', text = '✘' })
-        sign({ name = 'DiagnosticSignWarn', text = '▲' })
-        sign({ name = 'DiagnosticSignHint', text = '⚑' })
-        sign({ name = 'DiagnosticSignInfo', text = '' })
-
-
         vim.diagnostic.config({
             virtual_text = false,
             severity_sort = true,
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = '✘',
+                    [vim.diagnostic.severity.WARN] = '▲',
+                    [vim.diagnostic.severity.HINT] = '⚑',
+                    [vim.diagnostic.severity.INFO] = '',
+                },
+            },
             float = {
                 border = 'rounded',
                 source = 'always',
