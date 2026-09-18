@@ -1,7 +1,11 @@
 {
+    "solargraph": {
+"commandPath": "~/start_solargraph_per_project.sh"
+    },
     "colors.enable": true,
     "diagnostic.enable": false,
     "suggest": {
+      "timeout":  30000,
         "minTriggerInputLength": 3,
         "enableFloat": false,
         "floatConfig": {
