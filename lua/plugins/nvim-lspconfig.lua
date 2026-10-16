@@ -120,7 +120,11 @@ return {
 
         vim.lsp.config('solargraph', {
             cmd = { '/Users/frodo/start_solargraph_per_project.sh' },
-            diagnostics = true
+            settings = {
+                solargraph = {
+                    diagnostics = true,
+                },
+            },
         })
 
 
