@@ -15,9 +15,18 @@ return {
                 xml = { 'xmllint' },
                 yaml = { 'yamlfmt' },
                 sql = { 'pg_format'},
-                html = { 'htmlbeautifier'}
+                html = { 'htmlbeautifier'},
+                -- goimports упорядочивает импорты, gofumpt — строгий gofmt
+                go = { 'goimports', 'gofumpt' },
 
-            }
+            },
+            -- форматирование при сохранении только для Go
+            format_on_save = function(bufnr)
+                if vim.bo[bufnr].filetype ~= 'go' then
+                    return
+                end
+                return { timeout_ms = 1000, lsp_format = 'fallback' }
+            end,
         })
     end
 }

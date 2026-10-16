@@ -50,6 +50,10 @@ return {
                 -- bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
                 bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
                 bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+                -- переключение inlay hints (типы и имена параметров, gopls)
+                bufmap('n', '<space>ih', function()
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+                end)
                 -- bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
                 -- bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
                 -- bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
@@ -123,6 +127,41 @@ return {
             settings = {
                 solargraph = {
                     diagnostics = true,
+                },
+            },
+        })
+
+        vim.lsp.config('gopls', {
+            settings = {
+                gopls = {
+                    gofumpt = true,
+                    staticcheck = true,
+                    usePlaceholders = false,
+                    completeUnimported = true,
+                    directoryFilters = { '-.git', '-node_modules', '-vendor' },
+                    analyses = {
+                        unusedparams = true,
+                        unusedwrite = true,
+                        nilness = true,
+                        shadow = true,
+                        useany = true,
+                    },
+                    codelenses = {
+                        generate = true,
+                        gc_details = true,
+                        test = true,
+                        tidy = true,
+                        upgrade_dependency = true,
+                        vendor = true,
+                    },
+                    hints = {
+                        assignVariableTypes = true,
+                        compositeLiteralFields = true,
+                        constantValues = true,
+                        functionTypeParameters = true,
+                        parameterNames = true,
+                        rangeVariableTypes = true,
+                    },
                 },
             },
         })

@@ -8,6 +8,7 @@ return {
             'ruby', 'lua', 'vim', 'vimdoc', 'xml',
             'javascript', 'bash', 'html', 'sql',
             'json', 'csv', 'yaml', 'cpp',
+            'go', 'gomod', 'gosum', 'gowork',
         }
 
         require('nvim-treesitter').install(parsers)
