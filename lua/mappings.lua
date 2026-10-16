@@ -160,4 +160,7 @@ map('n', '<space>cfo', '<cmd>copen<cr>', { silent = true })
 map('n', '<space>cfn', '<cmd>cn<cr>', { silent = true })
 map('n', '<space>cfp', '<cmd>cp<cr>', { silent = true })
 map('n', '<space>cfc', '<cmd>ccl<cr>', { silent = true })
+
+map('t', '<Esc>', "<C-\\><C-n>", {silent=true})
+
 -- quickfix

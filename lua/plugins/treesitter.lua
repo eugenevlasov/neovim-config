@@ -7,7 +7,8 @@ return {
         local parsers = {
             'ruby', 'lua', 'vim', 'vimdoc', 'xml',
             'javascript', 'bash', 'html', 'sql',
-            'json', 'csv', 'yaml', 'cpp',
+            'json', 'csv', 'yaml', 'cpp', 'python',
+            'markdown', 'markdown_inline', 'latex', 'typst',
             'go', 'gomod', 'gosum', 'gowork',
         }
 
