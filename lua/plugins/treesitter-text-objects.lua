@@ -1,6 +1,10 @@
 return {
     'echasnovski/mini.ai',
     event = { 'BufReadPost', 'BufNewFile' },
+    dependencies = {
+        -- provides queries/<lang>/textobjects.scm for @function/@class/@block captures
+        { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
+    },
     config = function()
         local ai = require('mini.ai')
         ai.setup({
